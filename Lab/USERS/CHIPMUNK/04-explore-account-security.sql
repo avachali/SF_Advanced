@@ -11,7 +11,9 @@
 -- 4.1.2   Enter the following to create a network policy that allows access
 --         from only a single IP address:
 
-CREATE NETWORK POLICY CHIPMUNK_policy ALLOWED_IP_LIST=('12.13.14.15');
+use role SECURITYADMIN;
+--CREATE NETWORK POLICY CHIPMUNK_policy ALLOWED_IP_LIST=('12.13.14.15');
+CREATE NETWORK POLICY CHIPMUNK_policy ALLOWED_IP_LIST=('75.58.62.38');
 
 
 -- 4.1.3   Describe the policy to verify that it was set correctly.
@@ -31,6 +33,7 @@ CREATE USER CHIPMUNK_testuser PASSWORD = 'Password@1' MUST_CHANGE_PASSWORD = FAL
 
 -- 4.1.6   Now apply the network policy you created earlier to your test user:
 
+describe user CHIPMUNK_testuser;
 ALTER USER CHIPMUNK_testuser SET NETWORK_POLICY = CHIPMUNK_policy;
 
 
@@ -144,3 +147,4 @@ DROP TABLE tt_default;
 DROP TABLE tt_set30;
 ALTER DATABASE CHIPMUNK_db UNSET DATA_RETENTION_TIME_IN_DAYS;
 
+select * from table(information_schema.query_history());

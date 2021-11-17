@@ -12,8 +12,8 @@
 
 USE ROLE SYSADMIN;
 
-CREATE DATABASE CHIPMUNK_prod;
-CREATE SCHEMA CHIPMUNK_prod.sales;
+CREATE DATABASE if not exists CHIPMUNK_prod;
+CREATE or replace SCHEMA CHIPMUNK_prod.sales;
 
 
 -- 5.1.2   Create the functional roles.
